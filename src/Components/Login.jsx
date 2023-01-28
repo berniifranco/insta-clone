@@ -8,7 +8,7 @@ function Login() {
         <div className='container login-container'>
             <div className='row'>
                 <div className='col-md-7'>
-                    <img src={socialDesktop} className='w-100' alt='desktop-social' />
+                    <img src={socialDesktop} className='w-100 h-100' alt='desktop-social' />
                 </div>
                 <div className='col-md-5'>
                     <div className="card shadow">
