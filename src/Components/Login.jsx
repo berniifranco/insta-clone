@@ -11,16 +11,14 @@ function Login() {
                 </div>
                 <div className='col-md-5'>
                     <div className="card shadow">
-                        <div className="card-body">
+                        <div className="card-body px-5">
                             <h4 className="card-title text-center mt-3 fw-bold">Log In</h4>
                             <form>
-                                <div className="mb-3">
-                                    <input type="email" className="form-control" />
+                                <input type="email" className="p-2 mt-4 mb-2 form-control input-bg" placeholder='Phone number, username or e-mail' />
+                                <input type="password" className="p-2 mb-2 form-control input-bg" placeholder='Password' />
+                                <div className="mt-3 d-grid">
+                                    <button type="submit" className="custom-btn custom-btn-blue">Log In</button>
                                 </div>
-                                <div className="mb-3">
-                                    <input type="password" className="form-control" />
-                                </div>
-                                <button type="submit" className="btn btn-primary">Enviar</button>
                             </form>
                         </div>
                     </div>
