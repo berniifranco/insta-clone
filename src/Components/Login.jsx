@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/Login.css';
 import socialDesktop from '../assets/images/socialDesktop.png';
 
@@ -27,7 +28,7 @@ function Login() {
                                 <div className='mt-3 mb-5 d-grid'>
                                     <button className="custom-btn custom-btn-white">
                                         <span className='text-muted fs-6'>Don't have an account?</span>
-                                        <span className='ms-1 text-info fw-bold'>Sign Up</span>
+                                        <Link to='/signup' className='ms-1 text-info fw-bold'>Sign Up</Link>
                                     </button>
                                 </div>
                             </form>
