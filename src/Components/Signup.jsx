@@ -1,8 +1,8 @@
 import React from 'react';
-import '../assets/css/Login.css';
+import '../assets/css/Signup.css';
 import socialDesktop from '../assets/images/socialDesktop.png';
 
-function Login() {
+function Signup () {
     return (
         <div className='container login-container'>
             <div className='row'>
@@ -12,12 +12,14 @@ function Login() {
                 <div className='col-md-5'>
                     <div className="card shadow">
                         <div className="card-body px-5">
-                            <h4 className="card-title text-center mt-3 fw-bold">Log In</h4>
+                            <h4 className="card-title text-center mt-3 fw-bold">Sign Up</h4>
                             <form>
-                                <input type="email" className="p-2 mt-4 mb-2 form-control input-bg" placeholder='Phone number, username or e-mail' />
+                                <input type="text" className="p-2 mt-4 mb-2 form-control input-bg" placeholder='Phone' />
+                                <input type="email" className="p-2 mb-2 form-control input-bg" placeholder='E-Mail' />
+                                <input type="text" className="p-2 mb-2 form-control input-bg" placeholder='Full Name' />
                                 <input type="password" className="p-2 mb-2 form-control input-bg" placeholder='Password' />
                                 <div className="mt-3 d-grid">
-                                    <button className="custom-btn custom-btn-blue">Log In</button>
+                                    <button className="custom-btn custom-btn-blue">Sign Up</button>
                                 </div>
                                 <div className='my-4'>
                                     <hr className='text-muted'/>
@@ -26,8 +28,8 @@ function Login() {
                                 </div>
                                 <div className='mt-3 mb-5 d-grid'>
                                     <button className="custom-btn custom-btn-white">
-                                        <span className='text-muted fs-6'>Don't have an account?</span>
-                                        <span className='ms-1 text-info fw-bold'>Sign Up</span>
+                                        <span className='text-muted fs-6'>Already have an account?</span>
+                                        <span className='ms-1 text-info fw-bold'>Log In</span>
                                     </button>
                                 </div>
                             </form>
@@ -39,4 +41,4 @@ function Login() {
     )
 };
 
-export default Login;
+export default Signup;
