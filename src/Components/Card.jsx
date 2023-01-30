@@ -9,7 +9,7 @@ function Card() {
                 <div className="card-body px-2">
                     <div className="row">
                         <div className="col-6 d-flex">
-                            <img className='p-1 profile-pic' src="https://images.unsplash.com/photo-1530577912333-0edf2f7864f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80" alt="profile pic" />
+                            <img className='p-1 post-profile-pic' src="https://images.unsplash.com/photo-1530577912333-0edf2f7864f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80" alt="profile pic" />
                             <div className='mt-2'>
                                 <p className='fs-6 fw-bold'>Title</p>
                                 <p className='location'>Description</p>
