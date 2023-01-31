@@ -9,6 +9,11 @@ function Profile() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [showPost, setShowPost] = useState(false);
+
+    const handlePostClose = () => setShowPost(false);
+    const handlePostShow = () => setShowPost(true);
     return (
         <div className='container shadow mt-3 p-4'>
             <div className="row">
@@ -38,7 +43,7 @@ function Profile() {
                         <button className="custom-btn custom-btn-white me-md-3">
                             <span className='fs-6'>Edit Profile</span>
                         </button>
-                        <button className="custom-btn custom-btn-white">
+                        <button className="custom-btn custom-btn-white" onClick={handlePostShow}>
                             <span className='fs-6'>Upload Post</span>
                         </button>
                     </div>
@@ -155,6 +160,48 @@ function Profile() {
                                 </div>
                                 <div className="col-12 mt-3 ms-2">
                                     <span className="fs-6 fw-bold">200 Likes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+            <Modal show={showPost} onHide={handlePostClose} size="lg" centered>
+                <Modal.Header closeButton>
+                    <span className='fw-bold fs-5'>Upload Post</span>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="row">
+                        <div className="col-md-6 col-sm-12">
+                            <div className="upload-box">
+                                <div className="dropZoneContainer">
+                                    <input type="file" id='drop-zone' className='fileUpload'accept='.jpeg, .jpg, .png, .gif' onChange='handleFileSelect(this)' />
+                                    <div className="dropZoneOverlay">
+                                        <i className="fa-solid fa-cloud-arrow-up fs-1" /><br />Upload Photo From Computer
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-sm-12 d-flex flex-column justify-content-between">
+                            <div className="row">
+                                <div className="col-sm-12 mb-3">
+                                    <div className="form-floating">
+                                        <textarea className="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
+                                        <label for="floatingTextarea">Add Caption</label>
+                                    </div>
+                                </div>
+                                <div className="col-sm-12">
+                                    <div className="form-floating mb-3">
+                                        <input type="text" className="form-control" id="floatingInput" placeholder="Add Location" />
+                                        <label for="floatingInput"><i className="fa-solid fa-location-dot pe-2" />Add Location</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <button className="custom-btn custom-btn-pink float-end">
+                                        <span className='fs-6 fw-600'>Post</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
