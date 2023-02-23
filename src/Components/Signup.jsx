@@ -1,31 +1,74 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import '../assets/css/Signup.css';
 import socialDesktop from '../assets/images/socialDesktop.png';
+import Swal from 'sweetalert2';
 
-function Signup () {
+function Signup() {
+
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setpassword] = useState("");
+
+    const [loading, setLoading] = useState(false);
+
+    const signup = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        const requestData = {fullName: fullName, email, password}
+        axios.post(`${API_BASE_URL}/users/signup`, requestData)
+            .then((result) => {
+                if (result.status === 201) {
+                    setLoading(false);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User successfull registered'
+                    })
+                }
+                setFullName('');
+                setEmail('');
+                setpassword('');
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Some error ocurred please try again later!'
+                })
+            })
+    }
+
     return (
         <div className='container login-container'>
             <div className='row'>
                 <div className='col-md-7'>
                     <img src={socialDesktop} className='w-100 h-100' alt='desktop-social' />
                 </div>
-                <div className='col-md-5'>
+                <div className='col-md-5 col-sm-12'>
                     <div className="card shadow">
+                        { loading ? <div className="col-md-12 mt-3 text-center">
+                            <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        </div> : ''}
                         <div className="card-body px-5">
                             <h4 className="card-title text-center mt-3 fw-bold">Sign Up</h4>
-                            <form>
+                            <form onSubmit={(e) => signup(e)}>
                                 <input type="text" className="p-2 mt-4 mb-2 form-control input-bg" placeholder='Phone' />
-                                <input type="email" className="p-2 mb-2 form-control input-bg" placeholder='E-Mail' />
-                                <input type="text" className="p-2 mb-2 form-control input-bg" placeholder='Full Name' />
-                                <input type="password" className="p-2 mb-2 form-control input-bg" placeholder='Password' />
+                                <input type="email" onChange={(ev) => setEmail(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='E-Mail' />
+                                <input type="text" onChange={(ev) => setFullName(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Full Name' />
+                                <input type="password" onChange={(ev) => setpassword(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Password' />
                                 <div className="mt-3 d-grid">
-                                    <button className="custom-btn custom-btn-blue">Sign Up</button>
+                                    <button className="custom-btn custom-btn-blue" type='submit'>Sign Up</button>
                                 </div>
                                 <div className='my-4'>
-                                    <hr className='text-muted'/>
+                                    <hr className='text-muted' />
                                     <h5 className='text-muted text-center'>Or </h5>
-                                    <hr className='text-muted'/>
+                                    <hr className='text-muted' />
                                 </div>
                                 <div className='mt-3 mb-5 d-grid'>
                                     <button className="custom-btn custom-btn-white">
