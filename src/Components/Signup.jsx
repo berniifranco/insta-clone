@@ -59,9 +59,9 @@ function Signup() {
                             <h4 className="card-title text-center mt-3 fw-bold">Sign Up</h4>
                             <form onSubmit={(e) => signup(e)}>
                                 <input type="text" className="p-2 mt-4 mb-2 form-control input-bg" placeholder='Phone' />
-                                <input type="email" onChange={(ev) => setEmail(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='E-Mail' />
-                                <input type="text" onChange={(ev) => setFullName(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Full Name' />
-                                <input type="password" onChange={(ev) => setpassword(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Password' />
+                                <input type="email" value={email} onChange={(ev) => setEmail(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='E-Mail' />
+                                <input type="text" value={fullName} onChange={(ev) => setFullName(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Full Name' />
+                                <input type="password" value={password} onChange={(ev) => setpassword(ev.target.value)} className="p-2 mb-2 form-control input-bg" placeholder='Password' />
                                 <div className="mt-3 d-grid">
                                     <button className="custom-btn custom-btn-blue" type='submit'>Sign Up</button>
                                 </div>

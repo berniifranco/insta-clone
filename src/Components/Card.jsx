@@ -26,9 +26,9 @@ function Card() {
                     </div>
                     <div className="row my-3">
                         <div className="col-6 d-flex">
-                            <i class="ps-2 fs-4 fa-regular fa-heart" />
-                            <i class="ps-3 fs-4 fa-regular fa-comment" />
-                            <i class="ps-3 fs-4 fa-solid fa-location-arrow" />
+                            <i className="ps-2 fs-4 fa-regular fa-heart" />
+                            <i className="ps-3 fs-4 fa-regular fa-comment" />
+                            <i className="ps-3 fs-4 fa-solid fa-location-arrow" />
                         </div>
                         <div className="col-6">
                             <span className="pe-2 fs-6 fw-bold float-end">200 Likes</span>
