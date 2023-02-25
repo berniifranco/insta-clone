@@ -3,9 +3,17 @@ import '../assets/css/Profile.css';
 import Modal from 'react-bootstrap/Modal';
 import moreAction from '../assets/images/more-action.png';
 import '../assets/css/Card.css';
+import axios from 'axios';
+import { API_BASE_URL } from '../config'
+import { upload } from '@testing-library/user-event/dist/upload';
 
 function Profile() {
+
+    const [image, setImage] = useState({preview: '', data: ''});
+
     const [show, setShow] = useState(false);
+    const [caption, setCaption] = useState('');
+    const [location, setLocation] = useState('');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -14,6 +22,37 @@ function Profile() {
 
     const handlePostClose = () => setShowPost(false);
     const handlePostShow = () => setShowPost(true);
+
+    const CONFIG_OBJ = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    }
+
+    const handleFileSelect = (event) => {
+        const img = {
+            preview: URL.createObjectURL(event.target.files[0]),
+            data: event.target.files[0]
+        };
+        setImage(img);
+    };
+
+    const handleImgUpload = async () => {
+        let formData = new FormData();
+        formData.append('file', image.data);
+
+        const response = axios.post(`${API_BASE_URL}/files/uploadFile`, formData, CONFIG_OBJ);
+        return response;
+    };
+
+    const addPost = async () => {
+        const imgRes = await handleImgUpload();
+        // add validation rule for caption and location
+        const request = {description: caption, location: location, image: `${API_BASE_URL}/files/${imgRes.data.fileName}`};
+        // write api call to create post
+    }
+
     return (
         <div className='container shadow mt-3 p-4'>
             <div className="row">
@@ -175,9 +214,10 @@ function Profile() {
                         <div className="col-md-6 col-sm-12">
                             <div className="upload-box">
                                 <div className="dropZoneContainer">
-                                    <input type="file" id='drop-zone' className='fileUpload'accept='.jpeg, .jpg, .png, .gif' onChange='handleFileSelect(this)' />
+                                    <input name="file" type="file" id='drop-zone' className='fileUpload' accept='.jpeg, .jpg, .png, .gif' onChange={handleFileSelect} />
                                     <div className="dropZoneOverlay">
                                         <i className="fa-solid fa-cloud-arrow-up fs-1" /><br />Upload Photo From Computer
+                                        {image.preview && <img src={image.preview} width='150' height='150' alt='imagen' />}
                                     </div>
                                 </div>
                             </div>
@@ -186,14 +226,14 @@ function Profile() {
                             <div className="row">
                                 <div className="col-sm-12 mb-3">
                                     <div className="form-floating">
-                                        <textarea className="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
-                                        <label for="floatingTextarea">Add Caption</label>
+                                        <textarea onChange={(ev) => setCaption(ev.target.value)} className="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
+                                        <label htmlFor='floatingTextarea'>Add Caption</label>
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
                                     <div className="form-floating mb-3">
-                                        <input type="text" className="form-control" id="floatingInput" placeholder="Add Location" />
-                                        <label for="floatingInput"><i className="fa-solid fa-location-dot pe-2" />Add Location</label>
+                                        <input type="text" onChange={(ev) => setLocation(ev.target.value)} className="form-control" id="floatingInput" placeholder="Add Location" />
+                                        <label htmlFor="floatingInput"><i className="fa-solid fa-location-dot pe-2" />Add Location</label>
                                     </div>
                                 </div>
                             </div>
